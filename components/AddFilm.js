@@ -1,14 +1,16 @@
 import React from 'react';
 import {View, Button, StyleSheet} from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
 
-function AddFilm() {
+function AddFilm({navigation}) {
   const addFilm = () => {
     console.log('Add film');
   };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Button title="Add" onPress={() => addFilm()} />
+        <Button title="Add" onPress={() => navigation.navigate('AddFilm')} />
       </View>
     </View>
   );

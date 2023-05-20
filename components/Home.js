@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import AddFilm from './AddFilm';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const movies = [
     {id: 1, title: 'Pitch Perfect 1', cover: require('../comingsoon.jpeg')},
     {id: 2, title: 'Pitch Perfect 2', cover: require('../comingsoon.jpeg')},
@@ -30,7 +30,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <AddFilm />
+        <AddFilm navigation={navigation} />
         <TextInput
           onChangeText={handleInputChange}
           style={styles.search}
