@@ -9,17 +9,10 @@ import {
 } from 'react-native';
 import AddFilm from './AddFilm';
 import SearchFilm from './SearchFilm';
+import {movies} from './MoviesDB';
 
 export default function HomeScreen({navigation}) {
-  const movies = [
-    {id: 1, title: 'Pitch Perfect 1', cover: require('../comingsoon.jpeg')},
-    {id: 2, title: 'Pitch Perfect 2', cover: require('../comingsoon.jpeg')},
-    {id: 3, title: 'Pitch Perfect 3', cover: require('../comingsoon.jpeg')},
-    {id: 4, title: 'Predator', cover: require('../comingsoon.jpeg')},
-    {id: 5, title: 'Predator 3', cover: require('../comingsoon.jpeg')},
-    // ...other movies
-  ];
-
+  console.log(movies.map(film => film.cover));
   const findFilm = searchQuery => {
     console.log(searchQuery);
   };
@@ -33,7 +26,7 @@ export default function HomeScreen({navigation}) {
       <ScrollView horizontal={true} style={styles.carousel}>
         {movies.map(movie => (
           <View key={movie.id} style={styles.movie}>
-            <Text>{movie.title}</Text>
+            <Text>{movie.last_name}</Text>
             <Image source={movie.cover} style={styles.cover} />
           </View>
         ))}
