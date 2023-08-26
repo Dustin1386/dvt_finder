@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
-function SearchFilm() {
-  const [inputValue, setInputValue] = useState('');
+function SearchFilm(props) {
+  const {inputValue, setInputValue} = props;
   const handleInputChange = (text: React.SetStateAction<string>) => {
     setInputValue(text);
-    console.log(text);
-  };
+ };
 
   return (
     <View style={styles.container}>

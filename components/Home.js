@@ -13,23 +13,28 @@ import {movies} from './MoviesDB';
 
 export default function HomeScreen({navigation}) {
   console.log(movies.map(film => film.cover));
-  const findFilm = searchQuery => {
-    console.log(searchQuery);
-  };
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <AddFilm navigation={navigation} />
-        <SearchFilm />
+        <SearchFilm inputValue={inputValue} setInputValue={setInputValue} />
       </View>
       <ScrollView horizontal={true} style={styles.carousel}>
-        {movies.map(movie => (
-          <View key={movie.id} style={styles.movie}>
-            <Text>{movie.last_name}</Text>
-            <Image source={movie.cover} style={styles.cover} />
-          </View>
-        ))}
+        {movies
+          .filter(item => {
+            console.log(item.last_name.includes(inputValue));
+            return item.last_name
+              .toLowerCase()
+              .includes(inputValue.toLocaleLowerCase());
+          })
+          .map(movie => (
+            <View key={movie.id} style={styles.movie}>
+              <Text>{movie.last_name}</Text>
+              <Image source={movie.cover} style={styles.cover} />
+            </View>
+          ))}
       </ScrollView>
     </View>
   );
