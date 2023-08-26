@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import QrReader from 'react-qr-reader';
+import {View, Text} from 'react-native';
 
 function BarcodeScanner() {
   const [result, setResult] = useState('');
@@ -15,16 +15,9 @@ function BarcodeScanner() {
   };
 
   return (
-    <div>
-      <QrReader
-        delay={300}
-        onError={handleError}
-        onScan={handleScan}
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{width: '100%'}}
-      />
-      <p>{result}</p>
-    </div>
+    <View>
+      <Text>{result}</Text>
+    </View>
   );
 }
 

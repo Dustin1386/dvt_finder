@@ -8,6 +8,7 @@ import {
   Text,
 } from 'react-native';
 import AddFilm from './AddFilm';
+import SearchFilm from './SearchFilm';
 
 export default function HomeScreen({navigation}) {
   const movies = [
@@ -18,24 +19,16 @@ export default function HomeScreen({navigation}) {
     {id: 5, title: 'Predator 3', cover: require('../comingsoon.jpeg')},
     // ...other movies
   ];
-  const [inputValue, setInputValue] = useState('');
 
   const findFilm = searchQuery => {
     console.log(searchQuery);
   };
-  const handleInputChange = text => {
-    setInputValue(text);
-    console.log(text);
-  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <AddFilm navigation={navigation} />
-        <TextInput
-          onChangeText={handleInputChange}
-          style={styles.search}
-          placeholder="Search..."
-        />
+        <SearchFilm />
       </View>
       <ScrollView horizontal={true} style={styles.carousel}>
         {movies.map(movie => (
