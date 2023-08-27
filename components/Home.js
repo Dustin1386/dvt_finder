@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  TextInput,
-  ScrollView,
-  Image,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {View, ScrollView, Image, StyleSheet, Text} from 'react-native';
 import AddFilm from './AddFilm';
 import SearchFilm from './SearchFilm';
 import {movies} from './MoviesDB';
@@ -33,7 +26,7 @@ export default function HomeScreen({navigation}) {
             </View>
           ))
         ) : (
-          <Text style={styles.notFoundText}>Movie not found</Text>
+          <Text style={styles.notFoundText}>You Dont Have That movie.</Text>
         )}
       </ScrollView>
     </View>
