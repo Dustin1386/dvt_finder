@@ -12,8 +12,11 @@ import SearchFilm from './SearchFilm';
 import {movies} from './MoviesDB';
 
 export default function HomeScreen({navigation}) {
-  console.log(movies.map(film => film.cover));
   const [inputValue, setInputValue] = useState('');
+
+  const filteredMovies = movies.filter(movie =>
+    movie.last_name.toLowerCase().includes(inputValue.toLowerCase()),
+  );
 
   return (
     <View style={styles.container}>
@@ -22,19 +25,16 @@ export default function HomeScreen({navigation}) {
         <SearchFilm inputValue={inputValue} setInputValue={setInputValue} />
       </View>
       <ScrollView horizontal={true} style={styles.carousel}>
-        {movies
-          .filter(item => {
-            console.log(item.last_name.includes(inputValue));
-            return item.last_name
-              .toLowerCase()
-              .includes(inputValue.toLocaleLowerCase());
-          })
-          .map(movie => (
+        {filteredMovies.length > 0 ? (
+          filteredMovies.map(movie => (
             <View key={movie.id} style={styles.movie}>
               <Text>{movie.last_name}</Text>
               <Image source={movie.cover} style={styles.cover} />
             </View>
-          ))}
+          ))
+        ) : (
+          <Text style={styles.notFoundText}>Movie not found</Text>
+        )}
       </ScrollView>
     </View>
   );
@@ -71,5 +71,11 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 30,
     height: 300,
+  },
+  notFoundText: {
+    textAlign: 'center',
+    marginTop: 30,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
